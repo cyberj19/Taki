@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Taki</title>
+</head>
+<body>
+    <ul class="menu">
+        <li class="restart">
+            Restart
+        </li>
+    </ul>
+    <div class="dialog" id="dialog">
+        <div class="dialog__body">
+            <div class="dialog__title">I am dialog title</div>
+            <div class="dialog__description">Im dialog description</div>
+            <div class="dialog__buttons">
+                <div class="dialog__buttons__button approve">OK</div>
+                <div class="dialog__buttons__button cancel">Cancel</div>
+            </div>
+        </div>
+    </div>
+    <div class="board" id="board">
+
+        <div class="deck opp">
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+            <div class="card"></div>
+        </div>
+        <div class="deck player">
+            <div class="card" data-type="STOP" data-color="red"></div>
+            <div class="card" data-type="3" data-color="blue"></div>
+            <div class="card" data-type="7" data-color="yellow"></div>
+            <div class="card" data-type="TAKI" data-color="green"></div>
+            <div class="card" data-type="COLOR"></div>
+        </div>
+        <div class="pack stack">
+            <div class="card"></div>
+
+        </div>
+        <div class="pack heap">
+
+            <div class="card" data-type="6" data-color="blue"></div>
+        </div>
+
+
+    </div>
+    <link rel="stylesheet" href="styles/style.css" />
+
+    <script type="text/javascript" src="helpers/cards.js"></script>
+    <script type="text/javascript" src="objects/dialog.js"></script>
+    <script type="text/javascript" src="objects/card.js"></script>
+    <script type="text/javascript" src="objects/heap.js"></script>
+    <script type="text/javascript" src="objects/stack.js"></script>
+    <script type="text/javascript" src="objects/deck.js"></script>
+    <script type="text/javascript" src="objects/computer.js"></script>
+    <script type="text/javascript" src="objects/player.js"></script>
+    <script type="text/javascript" src="objects/game.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+
+</body>
+</html>

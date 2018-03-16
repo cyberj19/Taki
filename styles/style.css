@@ -1,0 +1,349 @@
+/*********************************/
+/*     Global styles and resets  */
+/*********************************/
+html, body  {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+}
+
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@font-face {
+    font-family: 'taki';
+    src:  url('fonts/taki.eot?jbpx8e');
+    src:  url('fonts/taki.eot?jbpx8e#iefix') format('embedded-opentype'),
+    url('fonts/taki.ttf?jbpx8e') format('truetype'),
+    url('fonts/taki.woff?jbpx8e') format('woff'),
+    url('fonts/taki.svg?jbpx8e#taki') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background: #008000;
+    box-shadow: inset  0 0 300px #005300;
+    color: #FFF;
+    text-align: center;
+    position: relative;
+    font-family: 'Arial', sans-serif;
+}
+
+.board {
+    position: relative;
+    height: 100%;
+}
+
+/*********************************/
+/*         Menu styles           */
+/*********************************/
+.menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+.menu li {
+    cursor: pointer;
+    height: 100px;
+    width: 80px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 5px;
+    background: #f4dc6b;
+    color: #554c28;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3), inset -2px -2px #554c28;
+    opacity: 0.7;
+    font-weight: bold;
+
+    -webkit-transition: all ease-in-out .2s;
+    -moz-transition: all ease-in-out .2s;
+    -ms-transition: all ease-in-out .2s;
+    -o-transition: all ease-in-out .2s;
+    transition: all ease-in-out .2s;
+}
+
+.menu li:hover {
+    opacity: 1;
+}
+.menu li:active {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3), inset 2px 2px #554c28;
+}
+.menu li.restart::before {
+    content: '⭯';
+    font-size: 55px;
+    display: inline-block;
+    width: 100%;
+}
+
+
+/*********************************/
+/*       Cards & Pack styles     */
+/*********************************/
+.card, .pack {
+    display: inline-block;
+    width: 14vw;
+    height: 18vw;
+    border-radius: .5vw;
+    border: .5vmax solid #fff;
+}
+.pack:not(:empty) {
+    border: 0;
+}
+.pack:empty {
+    border-style: dashed;
+}
+.pack {
+    margin: auto 2vw;
+    top: 50%;
+    position: relative;
+
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.pack .card {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+}
+
+.card {
+    background: #FFF;
+    position: relative;
+    box-shadow: 0 0 9px 3px rgba(0,0,0,0.6);
+    overflow: hidden;
+}
+.card::after {
+    content: "TAKI";
+    display: block;
+    color: black;
+    height: 100%;
+    width: 100%;
+    font-size: 2.5vmin;
+    text-align: left;
+    font-weight: bold;
+    text-shadow: red 0 1em, black 0 2em, red 0 3em, black 0 4em, red 0 5em, black 0 6em, red 0 7em, black 0 8em, red 0 9em, black 0 10em, red 0 11em, black 0 12em, red 0 13em, black 0 14em, red 0 15em, black 0 16em, red 2.5em 0em, black 2.5em 1em, red 2.5em 2em, black 2.5em 3em, red 2.5em 4em, black 2.5em 5em, red 2.5em 6em, black 2.5em 7em, red 2.5em 8em, black 2.5em 9em, red 2.5em 10em, black 2.5em 11em, red 2.5em 12em, black 2.5em 13em, red 2.5em 14em, black 2.5em 15em, red 2.5em 16em, black 5em 0em, red 5em 1em, black 5em 2em, red 5em 3em, black 5em 4em, red 5em 5em, black 5em 6em, red 5em 7em, black 5em 8em, red 5em 9em, black 5em 10em, red 5em 11em, black 5em 12em, red 5em 13em, black 5em 14em, red 5em 15em, black 5em 16em, red 7.5em 0em, black 7.5em 1em, red 7.5em 2em, black 7.5em 3em, red 7.5em 4em, black 7.5em 5em, red 7.5em 6em, black 7.5em 7em, red 7.5em 8em, black 7.5em 9em, red 7.5em 10em, black 7.5em 11em, red 7.5em 12em, black 7.5em 13em, red 7.5em 14em, black 7.5em 15em, red 7.5em 16em;
+}
+
+.card[data-type]::before,
+.card[data-type]::after {
+    content: attr(data-type);
+    color: inherit;
+
+}
+.card[data-type]::after {
+    text-shadow: 11.5vw 16vw, -2px 0 #000, 0 -2px #000, 0 2px  #000, 2px 0 #000, 2px -2px #000, -2px -2px #000, -2px 2px #000, 2px 2px #000;
+    margin: 2px 10px;
+}
+.card[data-type]::before {
+    text-align: center;
+    font-size: 12vmin;
+    position: absolute;
+    text-shadow: -2px 0 #000, 0 -2px #000, 0 2px  #000, 2px 0 #000, 2px -2px #000, -2px -2px #000, -2px 2px  #000, 2px 2px #000, 6px 6px;
+    top: 50%;
+    width: 100%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.card[data-type="TAKI"]::before,
+.card[data-type="TAKI"]::after {
+    font-family: monospace;
+    width: 1.5em;
+    line-height: .7em;
+    word-wrap: break-word;
+}
+.card[data-type="STOP"]::before,
+.card[data-type="STOP"]::after {
+    font-family: 'taki' !important;
+    content: "\e900";
+}
+
+.card[data-type="COLOR"]::before,
+.card[data-type="COLOR"]::after {
+    content: '\2756';
+}
+
+.card[data-color=blue] {color: #4CBBDB}
+.card[data-color=green] {color: #69B727}
+.card[data-color=red] {color: #FC2314}
+.card[data-color=yellow] {color: #F9F90F}
+
+/*********************************/
+/*              decks            */
+/*********************************/
+.deck {
+    position: absolute;
+    width: 100%;
+    height: 20%;
+}
+
+.deck > .card {
+    margin: 0 -4.5vw;
+}
+.deck.opp {
+    height: 2vw;
+    counter-reset: section;
+}
+.deck.opp > .card::before {
+    content: counter(section);
+    counter-increment: section;
+
+}
+.deck.opp > .card:last-of-type::before {
+    content: counter(section);
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 30px;
+    height: 30px;
+    line-height: 31px;
+    border-radius: 50%;
+    font-weight: bold;
+    border: 2px solid #FFF;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.39);
+    background: #0087ff;
+    -webkit-transform: rotate(35deg);
+    -moz-transform: rotate(-35deg);
+    -ms-transform: rotate(-35deg);
+    -o-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+}
+.deck.opp > .card:first-of-type::before {
+    background: red;
+}
+.deck.opp > .card {
+    top: -18vw;
+}
+.deck.player {
+    bottom: 0;
+}
+
+.deck.player > .card {
+    top: 90%;
+    -webkit-transition: top .3s;
+    -moz-transition: top .3s;
+    -ms-transition: top .3s;
+    -o-transition: top .3s;
+    transition: top .3s;
+}
+.deck.player > .card:hover {
+    top: 50%;
+}
+.deck .card {
+    -webkit-transform: rotate(35deg);
+    -moz-transform: rotate(35deg);
+    -ms-transform: rotate(35deg);
+    -o-transform: rotate(35deg);
+    transform: rotate(35deg);
+}
+.deck.player > .card.active {
+    cursor: pointer;
+}
+.deck.player > .card.off {
+    opacity: 0.7;
+    cursor: default;
+    pointer-events: none;
+}
+
+/*********************************/
+/*             Dialog            */
+/*********************************/
+.dialog {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    overflow: hidden;
+    height: 0;
+    background-color: transparent;
+    -webkit-transition: background-color .2s;
+    -moz-transition: background-color .2s;
+    -ms-transition: background-color .2s;
+    -o-transition: background-color .2s;
+    transition: background-color .2s;
+}
+.dialog.open {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+}
+
+.dialog__body {
+    display: inline-block;
+    width: 100%;
+    max-width: 800px;
+    padding: 1vw;
+    background: #f4dc6b;
+    color: black;
+    border-radius: 2px;
+    top: -50%;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    box-shadow: 0 0 10px 3px rgba(0,0,0,0.3);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    -webkit-transition: top .3s;
+    -moz-transition: top .3s;
+    -ms-transition: top .3s;
+    -o-transition: top .3s;
+    transition: top .3s;
+}
+.dialog.open .dialog__body {
+    top: 50%;
+}
+.dialog__title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 1vw;
+}
+.dialog__description {
+    margin-bottom: 1vw;
+}
+.dialog__buttons__button {
+    background: #0087ff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    box-shadow: 0 0 0 rgba(0,0,0,0.4);
+
+    -webkit-transition: box-shadow 0.2s;
+    -moz-transition: box-shadow 0.2s;
+    -ms-transition: box-shadow 0.2s;
+    -o-transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s;
+}
+.dialog__buttons__button.cancel {
+    background: #79797a;
+    margin-left: 10px;
+}
+.dialog__buttons__button:hover {
+    box-shadow: 0 0 4px rgba(0,0,0,0.4);
+}
