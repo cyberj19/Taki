@@ -3,6 +3,7 @@ function Player(heap, stack) {
     var _this = this;
 
     this.playerType = 'player';
+    this.dialog = new Dialog();
     this._turn = 0;
     this.endFunction = function () {};
     this.deckElem.classList.add('player');
@@ -16,12 +17,28 @@ function Player(heap, stack) {
 
         }
     };
+    this.showColorDialog = function () {
+        _this.dialog.open('Please choose a color:',
+            '<div> red <strong>white</strong></div>', function () {
+                _this.putCardInHeap(cardIndex);
+            })
+    };
+
+    this.putCardInHeap = function(cardIndex) {
+
+        _this.heap.putCard(_this.cards[cardIndex]);
+        _this.cards.splice(cardIndex, 1);
+        _this.endTurn();
+    };
+
     this.chooseCard = function (event) {
         if (_this._turn) {
             var cardIndex = parseInt(event.target.dataset.key);
-            _this.heap.putCard(_this.cards[cardIndex]);
-            _this.cards.splice(cardIndex, 1);
-            _this.endTurn();
+            if (_this.cards[cardIndex].type === 'COLOR' ) {
+                _this.showColorDialog(cardIndex);
+                return;
+            }
+            _this.putCardInHeap(cardIndex);
         }
 
     };
@@ -30,9 +47,14 @@ function Player(heap, stack) {
             card.cardElm.classList.remove('active');
             card.cardElm.classList.remove('off');
             card.cardElm.removeEventListener('click', _this.chooseCard);
+
+            window.setTimeout(function () {
+                card.cardElm.classList.remove('in');
+            }, 100);
             delete card.cardElm.dataset.key;
         });
         _this.stack.stackElm.removeEventListener('click', _this.pullCard);
+        _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('active');
 
         _this._turn = 0;
         _this.endFunction();
@@ -45,7 +67,9 @@ function Player(heap, stack) {
 
         _this.heap = heap;
         _this.stack.stackElm.addEventListener('click', _this.pullCard);
+        _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
         _this.cards.forEach(function (card) {
+
             if (heap.isCardEligible(card)) {
                 card.cardElm.classList.add('active');
                 card.cardElm.dataset.key = index.toString();

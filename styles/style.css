@@ -237,11 +237,14 @@ body {
 
 .deck.player > .card {
     top: 90%;
-    -webkit-transition: top .3s;
-    -moz-transition: top .3s;
-    -ms-transition: top .3s;
-    -o-transition: top .3s;
-    transition: top .3s;
+    -webkit-transition: top .3s .2s;
+    -moz-transition: top .3s .2s;
+    -ms-transition: top .3s .2s;
+    -o-transition: top .3s .2s;
+    transition: top .3s .2s;
+}
+.deck.player > .card.in {
+    top: 75%;
 }
 .deck.player > .card:hover {
     top: 50%;
@@ -253,6 +256,7 @@ body {
     -o-transform: rotate(35deg);
     transform: rotate(35deg);
 }
+.stack > .card.active,
 .deck.player > .card.active {
     cursor: pointer;
 }
