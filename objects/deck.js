@@ -1,6 +1,7 @@
-function Deck(heap) {
+function Deck(heap, stack) {
     this.cards = [];
     this.heap = heap;
+    this.stack = stack;
     this.playerType = '';
 
     this.deckElem = document.createElement('div');

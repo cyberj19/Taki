@@ -1,8 +1,8 @@
 function Game() {
     this.heap = new Heap();
     this.stack = new Stack(this.heap);
-    this.computer = new Computer(this.heap);
-    this.player = new Player(this.heap);
+    this.computer = new Computer(this.heap, this.stack);
+    this.player = new Player(this.heap, this.stack);
     this.gameElement = document.getElementById('board');
     this._turn = 1;
 
