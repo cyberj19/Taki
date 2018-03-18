@@ -20,7 +20,7 @@ function Dialog() {
 
         approveBtn.addEventListener('click', _this.approveFn);
         !noCancel && cancelBtn.addEventListener('click', _this.close);
-        !noCancel ? cancelBtn.classList.add('hidden') : cancelBtn.classList.remove('hidden');
+        noCancel ? cancelBtn.classList.add('hidden') : cancelBtn.classList.remove('hidden');
 
         _this.dialogContainer.classList.add('open');
     };

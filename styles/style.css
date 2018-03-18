@@ -135,7 +135,7 @@ body {
     color: black;
     height: 100%;
     width: 100%;
-    font-size: 2.5vmin;
+    font-size: 1.3vw;
     text-align: left;
     font-weight: bold;
     text-shadow: red 0 1em, black 0 2em, red 0 3em, black 0 4em, red 0 5em, black 0 6em, red 0 7em, black 0 8em, red 0 9em, black 0 10em, red 0 11em, black 0 12em, red 0 13em, black 0 14em, red 0 15em, black 0 16em, red 2.5em 0em, black 2.5em 1em, red 2.5em 2em, black 2.5em 3em, red 2.5em 4em, black 2.5em 5em, red 2.5em 6em, black 2.5em 7em, red 2.5em 8em, black 2.5em 9em, red 2.5em 10em, black 2.5em 11em, red 2.5em 12em, black 2.5em 13em, red 2.5em 14em, black 2.5em 15em, red 2.5em 16em, black 5em 0em, red 5em 1em, black 5em 2em, red 5em 3em, black 5em 4em, red 5em 5em, black 5em 6em, red 5em 7em, black 5em 8em, red 5em 9em, black 5em 10em, red 5em 11em, black 5em 12em, red 5em 13em, black 5em 14em, red 5em 15em, black 5em 16em, red 7.5em 0em, black 7.5em 1em, red 7.5em 2em, black 7.5em 3em, red 7.5em 4em, black 7.5em 5em, red 7.5em 6em, black 7.5em 7em, red 7.5em 8em, black 7.5em 9em, red 7.5em 10em, black 7.5em 11em, red 7.5em 12em, black 7.5em 13em, red 7.5em 14em, black 7.5em 15em, red 7.5em 16em;
@@ -153,12 +153,14 @@ body {
 }
 .card[data-type]::before {
     text-align: center;
-    font-size: 12vmin;
+    font-size: 8vw;
     position: absolute;
-    text-shadow: -2px 0 #000, 0 -2px #000, 0 2px  #000, 2px 0 #000, 2px -2px #000, -2px -2px #000, -2px 2px  #000, 2px 2px #000, 6px 6px;
+    text-shadow: -2px 0 #000, 0 -2px #000, 0 2px #000, 2px 0 #000, 2px -2px #000, -2px -2px #000, -2px 2px #000, 2px 2px #000, 6px 6px;
     top: 50%;
     width: 100%;
     left: 0;
+    right: 0;
+    margin: auto;
     transform: translateY(-50%);
 }
 
@@ -352,6 +354,9 @@ body {
     box-shadow: 0 0 4px rgba(0,0,0,0.4);
 }
 
+.dialog__buttons__button.hidden {
+    display: none;
+}
 
 /*********************************/
 /*     dialog color chooser      */
@@ -371,6 +376,7 @@ body {
     width: 50px;
     margin: 10px;
     height: 80px;
+    border-radius: 2px;
 }
 
 .dialog input[type=radio][name=color][value=red] + label { background: #FC2314;}
@@ -380,5 +386,6 @@ body {
 
 .dialog input[type=radio][name=color]:checked + label {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.59);
+    border-color: #fff;
 }
 

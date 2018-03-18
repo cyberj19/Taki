@@ -15,7 +15,8 @@ function Game() {
     this.nextTurn = function () {
         if (!this.currPlayer().cards.length) { // we have a winner
             this.dialog.open(this.currPlayer().playerType.toLocaleUpperCase() +  ' has win the game',
-                '<div><strong>This is the game stats:</strong><br/>Click "OK" to restart</div>', function () {
+                '<div><strong>This is the game stats:</strong><br/>Click "OK" to restart</div>' +
+                '<div class="pyro"/>', function () {
                     _this.dialog.close();
                     _this.restartGame();
                 }, true);
