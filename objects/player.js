@@ -17,10 +17,24 @@ function Player(heap, stack) {
 
         }
     };
-    this.showColorDialog = function () {
+    this.showColorDialog = function (cardIndex) {
         _this.dialog.open('Please choose a color:',
-            '<div> red <strong>white</strong></div>', function () {
-                _this.putCardInHeap(cardIndex);
+            '<div>    <input type="radio" id="dialog-color-choose-GREEN" name="color" value="green">\n' +
+            '    <label for="dialog-color-choose-GREEN">GREEN</label>\n' +
+            '    <input type="radio" id="dialog-color-choose-BLUE" name="color" value="blue">\n' +
+            '    <label for="dialog-color-choose-BLUE">BLUE</label>\n' +
+            '    <input type="radio" id="dialog-color-choose-YELLOW" name="color" value="yellow">\n' +
+            '    <label for="dialog-color-choose-YELLOW">YELLOW</label>\n' +
+            '    <input type="radio" id="dialog-color-choose-RED" name="color" value="red">\n' +
+            '    <label for="dialog-color-choose-RED">RED</label></div>', function () {
+
+                var selectedColor = _this.dialog.dialogContainer.querySelector('input[name="color"]:checked');
+
+                if (!!selectedColor) {
+                    _this.cards[cardIndex].color = selectedColor.value;
+                    _this.dialog.close();
+                    _this.putCardInHeap(cardIndex);
+                }
             })
     };
 

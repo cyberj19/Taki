@@ -351,3 +351,34 @@ body {
 .dialog__buttons__button:hover {
     box-shadow: 0 0 4px rgba(0,0,0,0.4);
 }
+
+
+/*********************************/
+/*     dialog color chooser      */
+/*********************************/
+.dialog input[type=radio][name=color] {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.dialog input[type=radio][name=color] + label {
+    color: transparent;
+    display: inline-block;
+    background: gray;
+    border: 1px solid #79797a;
+    cursor: pointer;
+    width: 50px;
+    margin: 10px;
+    height: 80px;
+}
+
+.dialog input[type=radio][name=color][value=red] + label { background: #FC2314;}
+.dialog input[type=radio][name=color][value=blue] + label { background: #4CBBDB;}
+.dialog input[type=radio][name=color][value=yellow] + label { background: #F9F90F;}
+.dialog input[type=radio][name=color][value=green] + label { background: #69B727;}
+
+.dialog input[type=radio][name=color]:checked + label {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.59);
+}
+
