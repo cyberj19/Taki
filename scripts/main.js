@@ -9,8 +9,9 @@
             , 'If you restart the game, the current game will <strong>deleted</strong>',
             function () {
                 _dialog.close();
+                _game.restartGame();
             })
-    } );
+    });
     _game.initGame();
 
 })();
