@@ -8,6 +8,9 @@ function Player(heap, stack) {
     this.endFunction = function () {};
     this.deckElem.classList.add('player');
 
+    this.takiBtn = document.createElement('div');
+    this.takiBtn.classList.add('end-taki-btn');
+
     this.pullCard = function () {
         if (!!_this._turn) {
             var card = _this.stack.getCard('player');
@@ -39,10 +42,10 @@ function Player(heap, stack) {
     };
 
     this.putCardInHeap = function(cardIndex) {
-
-        _this.heap.putCard(_this.cards[cardIndex]);
+        var endCard = _this.cards[cardIndex];
+        _this.heap.putCard(endCard);
         _this.cards.splice(cardIndex, 1);
-        _this.endTurn();
+        _this.endTurn(endCard);
     };
 
     this.chooseCard = function (event) {
@@ -56,7 +59,7 @@ function Player(heap, stack) {
         }
 
     };
-    this.endTurn = function () {
+    this.endTurn = function (endCard) {
         _this.cards.forEach(function (card) {
             card.cardElm.classList.remove('active');
             card.cardElm.classList.remove('off');
@@ -67,11 +70,17 @@ function Player(heap, stack) {
             }, 100);
             delete card.cardElm.dataset.key;
         });
+
+
+        if (heap.takiMode) {
+            _this.takiBtn.removeEventListener('click', _this.endTurn);
+        }
+
         _this.stack.stackElm.removeEventListener('click', _this.pullCard);
         _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('active');
 
         _this._turn = 0;
-        _this.endFunction();
+        _this.endFunction(endCard);
 
     };
     this.turn = function (heap, endFunction) {
@@ -82,6 +91,10 @@ function Player(heap, stack) {
         _this.heap = heap;
         _this.stack.stackElm.addEventListener('click', _this.pullCard);
         _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
+
+        if (heap.takiMode) _this.takiBtn.addEventListener('click', _this.endTurn);
+
+
         _this.cards.forEach(function (card) {
 
             if (heap.isCardEligible(card)) {
@@ -95,6 +108,11 @@ function Player(heap, stack) {
             ++index;
         });
 
+    };
+    this.renderPlayer = function () {
+        _this.renderDeck();
+        if (_this.heap.takiMode) _this.deckElem.appendChild(_this.takiBtn);
+        return _this.deckElem;
     };
 }
 

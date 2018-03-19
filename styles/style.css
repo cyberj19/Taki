@@ -135,7 +135,7 @@ body {
     color: black;
     height: 100%;
     width: 100%;
-    font-size: 1.3vw;
+    font-size: 1.45vw;
     text-align: left;
     font-weight: bold;
     text-shadow: red 0 1em, black 0 2em, red 0 3em, black 0 4em, red 0 5em, black 0 6em, red 0 7em, black 0 8em, red 0 9em, black 0 10em, red 0 11em, black 0 12em, red 0 13em, black 0 14em, red 0 15em, black 0 16em, red 2.5em 0em, black 2.5em 1em, red 2.5em 2em, black 2.5em 3em, red 2.5em 4em, black 2.5em 5em, red 2.5em 6em, black 2.5em 7em, red 2.5em 8em, black 2.5em 9em, red 2.5em 10em, black 2.5em 11em, red 2.5em 12em, black 2.5em 13em, red 2.5em 14em, black 2.5em 15em, red 2.5em 16em, black 5em 0em, red 5em 1em, black 5em 2em, red 5em 3em, black 5em 4em, red 5em 5em, black 5em 6em, red 5em 7em, black 5em 8em, red 5em 9em, black 5em 10em, red 5em 11em, black 5em 12em, red 5em 13em, black 5em 14em, red 5em 15em, black 5em 16em, red 7.5em 0em, black 7.5em 1em, red 7.5em 2em, black 7.5em 3em, red 7.5em 4em, black 7.5em 5em, red 7.5em 6em, black 7.5em 7em, red 7.5em 8em, black 7.5em 9em, red 7.5em 10em, black 7.5em 11em, red 7.5em 12em, black 7.5em 13em, red 7.5em 14em, black 7.5em 15em, red 7.5em 16em;
@@ -250,6 +250,11 @@ body {
 }
 .deck.player > .card:hover {
     top: 50%;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
 }
 .deck .card {
     -webkit-transform: rotate(35deg);
@@ -268,6 +273,40 @@ body {
     pointer-events: none;
 }
 
+.deck .end-taki-btn {
+    cursor: pointer;
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    bottom: 2vw;
+    background: red;
+    border-radius: 50%;
+    color: #FFF;
+    left: 6vw;
+    box-shadow: 0 0 5px rgb(90, 13, 13), 0 0 0 5px red, inset -5px -6px 20px 2px rgb(90, 13, 13), 6px 3px 10px rgb(90, 13, 13);
+}
+.deck .end-taki-btn::after {
+    content: "End TAKI";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ffafaf;
+    border-radius: 50%;
+    box-shadow: inset 0 0 143px 7px rgb(255, 0, 0), inset 5px 3px 13px 0 rgba(0, 0, 0, 1);
+    position: relative;
+    left: -.5vw;
+    top: -.5vw;
+    font-weight: bolder;
+    font-size: 3vw;
+    line-height: 4.7vw;
+    text-shadow: -2px -2px rgba(0,0,0,0.3), -1px -1px rgba(0,0,0,0.3), 1px 1px rgba(255,255,255,0.3);
+}
+
+.deck .end-taki-btn:active::after {
+    left: 0;
+    top: 0;
+    box-shadow: inset 0 0 143px 7px rgb(255, 0, 0), inset 0 0 0 0 rgba(0, 0, 0, 0);
+}
 /*********************************/
 /*             Dialog            */
 /*********************************/
@@ -294,7 +333,7 @@ body {
 
 .dialog__body {
     display: inline-block;
-    width: 100%;
+    width: calc(100% - 2vw);
     max-width: 800px;
     padding: 1vw;
     background: #f4dc6b;

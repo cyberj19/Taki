@@ -1,6 +1,7 @@
 function Heap() {
     this.card = new Card();
     this.heap = [];
+    this.takiMode = false;
 
     this.heapElm = document.createElement('div');
     this.heapElm.className = 'pack heap';
@@ -8,8 +9,12 @@ function Heap() {
     var _this = this;
 
     this.isCardEligible = function (card) {
-        return !(!!_this.card.type && unColoredCards().indexOf( card.type ) === -1 && card.type !== _this.card.type && card.color !== _this.card.color);
+        return !(!!_this.card.type
+            && unColoredCards().indexOf( card.type ) === -1
+            && ((card.type !== _this.card.type) || (_this.takiMode && card.type === _this.card.type))
+            && card.color !== _this.card.color);
     };
+
     this.putCard = function (card) {
         if (!_this.isCardEligible(card)) return false;
 

@@ -6,6 +6,8 @@
 .pyro::before, .pyro::after {
     content: ".";
     color: transparent;
+    left: 0;
+    top: -100px;
     position: absolute;
     width: 5px;
     height: 5px;

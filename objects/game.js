@@ -12,7 +12,7 @@ function Game() {
     this.currPlayer = function () {
         return _this._turn ? _this.player : _this.computer;
     };
-    this.nextTurn = function () {
+    this.nextTurn = function (lastCard) {
         if (!this.currPlayer().cards.length) { // we have a winner
             this.dialog.open(this.currPlayer().playerType.toLocaleUpperCase() +  ' has win the game',
                 '<div><strong>This is the game stats:</strong><br/>Click "OK" to restart</div>' +
@@ -22,18 +22,29 @@ function Game() {
                 }, true);
         }
         else {
+            if (lastCard && !lastCard.target) {
+                if (lastCard.type === 'TAKI') {
+                    this.heap.takiMode = true;
+                }
+                this._turn = this.heap.takiMode ? this._turn : ((this._turn + 1) % 2);
+            }
+            else {
+                this.heap.takiMode = false;
+                this._turn = (this._turn + 1) % 2;
+            }
             this.start();
         }
     };
+
     this.start = function () {
-        (_this._turn ? _this.player : _this.computer).turn(_this.heap, _this.nextTurn.bind(_this));
+        _this.currPlayer().turn(_this.heap, _this.nextTurn.bind(_this));
         _this.renderGame();
     };
 
     this.renderGame = function () {
         _this.gameElement.innerHTML = '';
         _this.gameElement.appendChild(_this.computer.renderDeck());
-        _this.gameElement.appendChild(_this.player.renderDeck());
+        _this.gameElement.appendChild(_this.player.renderPlayer());
         _this.gameElement.appendChild(_this.stack.renderStack());
         _this.gameElement.appendChild(_this.heap.renderHeap());
     };
