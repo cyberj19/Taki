@@ -10,16 +10,22 @@ function Game() {
     var _this = this;
 
     this.currPlayer = function () {
-        return _this._turn ? _this.player : _this.computer;
+        return _this._turn ? _this.player : _this.player;
+    };
+    this.gameOver = function () {
+        var winner = _this.player.cards.length ? _this.computer : _this.player;
+
+        _this.dialog.open(winner.playerType.toLocaleUpperCase() +  ' has win the game',
+            '<div><strong>This is the game stats:</strong><br/>Click "OK" to restart</div>' +
+            (winner.playerType === _this.player.playerType ? '<div class="pyro"/>' : '')
+            , function () {
+                _this.dialog.close();
+                _this.restartGame();
+            }, true);
     };
     this.nextTurn = function (lastCard) {
         if (!this.currPlayer().cards.length) { // we have a winner
-            this.dialog.open(this.currPlayer().playerType.toLocaleUpperCase() +  ' has win the game',
-                '<div><strong>This is the game stats:</strong><br/>Click "OK" to restart</div>' +
-                '<div class="pyro"/>', function () {
-                    _this.dialog.close();
-                    _this.restartGame();
-                }, true);
+            this.gameOver()
         }
         else {
             if (lastCard && !lastCard.target) {
