@@ -11,15 +11,7 @@ function Player(heap, stack) {
     this.takiBtn = document.createElement('div');
     this.takiBtn.classList.add('end-taki-btn');
 
-    this.pullCard = function () {
-        if (!!_this._turn) {
-            var card = _this.stack.getCard('player');
-            card.cardElm.classList.add('in');
-            _this.cards.push(card);
-            _this.endTurn();
 
-        }
-    };
     this.showColorDialog = function (cardIndex) {
         _this.dialog.open('Please choose a color:',
             '<div>    <input type="radio" id="dialog-color-choose-GREEN" name="color" value="green">\n' +
@@ -41,12 +33,6 @@ function Player(heap, stack) {
             })
     };
 
-    this.putCardInHeap = function(cardIndex) {
-        var endCard = _this.cards[cardIndex];
-        _this.heap.putCard(endCard);
-        _this.cards.splice(cardIndex, 1);
-        _this.endTurn(endCard);
-    };
 
     this.chooseCard = function (event) {
         if (_this._turn) {
@@ -92,7 +78,7 @@ function Player(heap, stack) {
         _this.stack.stackElm.addEventListener('click', _this.pullCard);
         _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
 
-        if (heap.takiMode) _this.takiBtn.addEventListener('click', _this.endTurn);
+        if (heap.takiMode) _this.takiBtn.addEventListener('click', _this.endTurn.bind(_this));
 
 
         _this.cards.forEach(function (card) {

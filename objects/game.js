@@ -10,7 +10,7 @@ function Game() {
     var _this = this;
 
     this.currPlayer = function () {
-        return _this._turn ? _this.player : _this.player;
+        return _this._turn ? _this.player : _this.computer;
     };
     this.gameOver = function () {
         var winner = _this.player.cards.length ? _this.computer : _this.player;
@@ -32,9 +32,12 @@ function Game() {
                 if (lastCard.type === 'TAKI') {
                     this.heap.takiMode = true;
                 }
+                if (lastCard.type === 'STOP') {
+                    this._turn = (this._turn + 1) % 2;
+                }
                 this._turn = this.heap.takiMode ? this._turn : ((this._turn + 1) % 2);
             }
-            else {
+            else { // TAKI finished or user took a card
                 this.heap.takiMode = false;
                 this._turn = (this._turn + 1) % 2;
             }
