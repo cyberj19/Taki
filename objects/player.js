@@ -73,16 +73,17 @@ function Player(heap, stack) {
         var index = 0;
         _this._turn = 1;
         _this.endFunction = endFunction;
-
         _this.heap = heap;
-        _this.stack.stackElm.addEventListener('click', _this.pullCard);
-        _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
 
-        if (heap.takiMode) _this.takiBtn.addEventListener('click', _this.endTurn.bind(_this));
-
+        if (heap.takiMode) {
+            _this.takiBtn.addEventListener('click', _this.endTurn.bind(_this));
+        }
+        else {
+            _this.stack.stackElm.addEventListener('click', _this.pullCard);
+            _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
+        }
 
         _this.cards.forEach(function (card) {
-
             if (heap.isCardEligible(card)) {
                 card.cardElm.classList.add('active');
                 card.cardElm.dataset.key = index.toString();

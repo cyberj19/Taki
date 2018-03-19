@@ -9,19 +9,19 @@ Computer.prototype = Object.create(Deck.prototype);
 Computer.prototype.constructor = Computer;
 
 Computer.prototype.turn = function (heap, endFunction) {
-    var availableCards = [];
+    var availableCards = [],
+        index = 0;
+
 
     this._turn = 1;
-    this.endFunction = endFunction;
 
+    this.endFunction = endFunction;
     this.cards.forEach(function (card) {
-        var index = 0;
-        if (heap.isCardEligible(card)
-            && card.type !== 'COLOR')  // temporary role not to choose color card
+        if (heap.isCardEligible(card) && card.type !== 'COLOR')  // temporary role not to choose color card
         {
             availableCards.push(index);
-            ++index;
         }
+        ++index;
     });
 
     if (!!availableCards.length) {

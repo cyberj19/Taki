@@ -32,15 +32,15 @@ function Game() {
                 if (lastCard.type === 'TAKI') {
                     this.heap.takiMode = true;
                 }
-                if (lastCard.type === 'STOP') {
+                if (lastCard.type === 'STOP' && !this.heap.takiMode) {
                     this._turn = (this._turn + 1) % 2;
                 }
-                this._turn = this.heap.takiMode ? this._turn : ((this._turn + 1) % 2);
             }
             else { // TAKI finished or user took a card
                 this.heap.takiMode = false;
-                this._turn = (this._turn + 1) % 2;
             }
+            this._turn = this.heap.takiMode ? this._turn : ((this._turn + 1) % 2);
+            this.renderGame();
             this.start();
         }
     };
