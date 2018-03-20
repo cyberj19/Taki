@@ -25,6 +25,7 @@ Computer.prototype.turn = function (heap, endFunction) {
     });
 
     if (!!availableCards.length) {
+        if (heap.takiMode) sleep(700);
         this.putCardInHeap(availableCards[0]);
     }
     else {
