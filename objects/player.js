@@ -61,10 +61,10 @@ function Player(heap, stack) {
         if (heap.takiMode) {
             _this.takiBtn.removeEventListener('click', _this.endTurn);
         }
-
-        _this.stack.stackElm.removeEventListener('click', _this.pullCard);
-        _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('active');
-
+        else {
+            _this.stack.stackElm.removeEventListener('click', _this.pullCard);
+            _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('active');
+        }
         _this._turn = 0;
         _this.endFunction(endCard);
 
@@ -76,7 +76,7 @@ function Player(heap, stack) {
         _this.heap = heap;
 
         if (heap.takiMode) {
-            _this.takiBtn.addEventListener('click', _this.endTurn.bind(_this));
+            _this.takiBtn.addEventListener('click', _this.endTurn);
         }
         else {
             _this.stack.stackElm.addEventListener('click', _this.pullCard);
