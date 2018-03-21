@@ -17,26 +17,27 @@ function Stats() {
 
         return _this.cardElm;
     };
+
+    this.endGame = function () {
+        var sumObj = {};
+        _this.gameStats.forEach(function (stat) {
+            if (!sumObj[stat.playerType]) sumObj[stat.playerType] = {};
+
+            sumObj[stat.playerType] = {
+                oneCardTotal: (sumObj[stat.playerType].oneCardTotal || 0) + (stat.cards === 1 ? 1 : 0),
+                playerTotalTime: (sumObj[stat.playerType].playerTotalTime || 0) + stat.time,
+                playerTotalMoves: (sumObj[stat.playerType].playerTotalMoves || 0) + 1,
+                playerAvaregeTime: sumObj[stat.playerType].playerTotalTime / sumObj[stat.playerType].playerTotalMoves
+            }
+        });
+        sumObj.totalMoves = _this.gameStats.length;
+        sumObj.gameTime = performance.now() - _this.startTime;
+        _this.gamesAvarageTime.push(sumObj.player ? sumObj.player.playerAvaregeTime : sumObj.gameTime);
+
+        return sumObj;
+    };
 }
 
-Stats.prototype.endGame = function () {
-    var sumObj = {};
-    this.gameStats.forEach(function (stat) {
-        if (!sumObj[stat.playerType]) sumObj[stat.playerType] = {};
-
-        sumObj[stat.playerType] = {
-            oneCardTotal: (sumObj[stat.playerType].oneCardTotal || 0) + (stat.cards === 1 ? 1 : 0),
-            playerTotalTime: (sumObj[stat.playerType].playerTotalTime || 0) + stat.time,
-            playerTotalMoves: (sumObj[stat.playerType].playerTotalMoves || 0) + 1,
-            playerAvaregeTime: sumObj[stat.playerType].playerTotalTime / sumObj[stat.playerType].playerTotalMoves
-        }
-    });
-    sumObj.totalMoves = this.gameStats.length;
-    sumObj.gameTime = performance.now() - this.startTime;
-    this.gamesAvarageTime.push(sumObj.player.playerAvaregeTime);
-
-    return sumObj;
-};
 Stats.prototype.clearStats = function () {
     this.startTime = performance.now();
     this.lastLap = performance.now();
