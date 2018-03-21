@@ -5,6 +5,8 @@ function Game() {
     this.player = new Player(this.heap, this.stack);
     this.gameElement = document.getElementById('board');
     this.dialog = new Dialog();
+    this.stats = new Stats();
+    this.statsInterval = window.setInterval(this.stats.renderClock, 1000);
     this._turn = 1;
 
     var _this = this;
@@ -13,10 +15,13 @@ function Game() {
         return _this._turn ? _this.player : _this.computer;
     };
     this.gameOver = function () {
-        var winner = _this.player.cards.length ? _this.computer : _this.player;
+        var winner = _this.player.cards.length ? _this.computer : _this.player,
+            statsObj = _this.stats.endGame();
+
+        window.clearInterval(this.statsInterval);
 
         _this.dialog.open(winner.playerType.toLocaleUpperCase() +  ' has win the game',
-            '<div><strong>This is the game stats:</strong><br/>Click "OK" to restart</div>' +
+            '<div><strong>This is the game stats:</strong>' + statsObj + '<br/>Click "OK" to restart</div>' +
             (winner.playerType === _this.player.playerType ? '<div class="pyro"/>' : '')
             , function () {
                 _this.dialog.close();
@@ -24,22 +29,27 @@ function Game() {
             }, true);
     };
     this.nextTurn = function (lastCard) {
+        _this.stats.endLap(this.currPlayer());
+
         if (!this.currPlayer().cards.length) { // we have a winner
             this.gameOver()
         }
         else {
-            if (lastCard && !lastCard.target) {
+            if (lastCard && !lastCard.target) {  // Colored Action cards
                 if (lastCard.type === 'TAKI') {
                     this.heap.takiMode = true;
                 }
                 if (lastCard.type === 'STOP' && !this.heap.takiMode) {
-                    this._turn = (this._turn + 1) % 2;
+                    this._turn = (this._turn + 1) % PLAYER_COUNT;
+                }
+                if (lastCard.type === '+' && !this.heap.takiMode) {
+                    this._turn = (this._turn - 1) % PLAYER_COUNT; // Decrease the turn cuz soon it will be increased
                 }
             }
             else { // TAKI finished or user took a card
                 this.heap.takiMode = false;
             }
-            this._turn = this.heap.takiMode ? this._turn : ((this._turn + 1) % 2);
+            this._turn = this.heap.takiMode ? this._turn : ((this._turn + 1) % PLAYER_COUNT);
             this.renderGame();
             this.start();
         }
@@ -66,6 +76,8 @@ function Game() {
         _this.computer = new Computer(this.heap, this.stack);
         _this.player = new Player(this.heap, this.stack);
         _this._turn = 1;
+        _this.stats.clearStats();
+        this.statsInterval = window.setInterval(this.stats.renderClock, 1000);
 
         _this.initGame();
 
@@ -77,6 +89,8 @@ function Game() {
             _this.computer.putCard(_this.stack.getCard('computer'));
             _this.player.putCard(_this.stack.getCard('player'));
         }
+
+        window.setInterval(_this.stats.renderClock, 1000);
 
         _this.start();
     };

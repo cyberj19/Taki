@@ -3,7 +3,7 @@
 // each group is in a function to avoid referred arrays
 
 var regularCards = function() { return [
-        "1", "3", "4", "5", "6", "7", "8", "9", "STOP", "TAKI"
+        "1", "3", "4", "5", "6", "7", "8", "9", "+", "STOP", "TAKI"
     ]
 };
 

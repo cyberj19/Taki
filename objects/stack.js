@@ -40,10 +40,6 @@ Stack.prototype.getCard = function (rquire) {
     this.setStack();
     if (!!this.stack.length) {
         var cardLoc = Math.ceil(Math.random() * (this.stack.length - 1)); // Every day we shuffeling
-        console.log('cardLoc');
-        console.log(this.stack.length);
-        console.log(cardLoc);
-        console.log(this.stack[cardLoc]);
         while (rquire === 'heap' && unColoredCards().indexOf(this.stack[cardLoc].type) > -1) {
             cardLoc = Math.ceil(Math.random() * (this.stack.length - 1));
         }

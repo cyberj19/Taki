@@ -74,12 +74,26 @@ body {
     -o-transition: all ease-in-out .2s;
     transition: all ease-in-out .2s;
 }
+.menu li.clock {
+    cursor: default;
+    font-size: 22px;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+.menu li.clock hr {
+    border: 0;
+    border-top: 1px solid;
+    margin: 5px;
+}
 
 .menu li:hover {
     opacity: 1;
 }
 .menu li:active {
     box-shadow: 0 0 5px rgba(0,0,0,0.3), inset 2px 2px #554c28;
+}
+.menu li.clock:active {
+    box-shadow: 0 0 5px rgba(0,0,0,0.3), inset -2px -2px #554c28;
 }
 .menu li.restart::before {
     content: '⭯';
@@ -186,6 +200,15 @@ body {
 .card[data-color=green] {color: #69B727}
 .card[data-color=red] {color: #FC2314}
 .card[data-color=yellow] {color: #F9F90F}
+.card[data-color=none]::after,
+.card[data-color=none]::before {
+    background: -webkit-linear-gradient(-45deg, rgba(41,137,216,0) 0%,rgba(41,137,216,0) 52%,rgba(41,137,216,1) 52%,rgba(41,137,216,1) 100%),
+    -webkit-linear-gradient(45deg, rgba(41,137,216,0) 0%,rgba(41,137,216,0) 48%, rgb(105, 183, 39)49%, rgb(105, 183, 39) 100%),
+    -webkit-linear-gradient(-135deg, rgba(41,137,216,0) 0%,rgba(41,137,216,0) 52%, rgb(252, 35, 20) 52%, rgb(252, 35, 20) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-shadow: 0 0 transparent;
+}
 
 /*********************************/
 /*              decks            */
@@ -290,23 +313,27 @@ body {
     border-radius: 50%;
     color: #FFF;
     left: 6vw;
-    box-shadow: 0 0 5px rgb(90, 13, 13), 0 0 0 5px red, inset -5px -6px 20px 2px rgb(90, 13, 13), 6px 3px 10px rgb(90, 13, 13);
+    box-shadow: inset 0 0.3vw 0 #da2e0b,
+    inset 0 -0.3vw 0 #aa2409, inset 0 0 0 0.3vw #B32608,
+    inset 0 0 0 0.8vw #c2290a, inset 0 0 0 1vw #611405,
+    inset 0 0 0 0.1vw black, inset 0 0 0 1.1vw rgba(247, 133, 110, 0.7),
+    inset 0 0 0 1.3vw #c2290a, inset 0 2.4vw 0 #aa2409,
+    inset 0 0 4vw 2vw #911f08, 0 0.5vw 0 rgba(0, 0, 0, 0.3);
 }
 .deck .end-taki-btn::after {
     content: "End TAKI";
     display: block;
     width: 100%;
     height: 100%;
-    background: #ffafaf;
+    padding: 2.5vw 2vw;
+    font-weight: bold;
+    color: #ffffff;
+    opacity: 0.9;
+    font-size: 2vw;
+    text-shadow: -1px -1px rgba(0,0,0,0.5);
+    box-sizing: border-box;
     border-radius: 50%;
-    box-shadow: inset 0 0 143px 7px rgb(255, 0, 0), inset 5px 3px 13px 0 rgba(0, 0, 0, 1);
-    position: relative;
-    left: -.5vw;
-    top: -.5vw;
-    font-weight: bolder;
-    font-size: 3vw;
-    line-height: 4.7vw;
-    text-shadow: -2px -2px rgba(0,0,0,0.3), -1px -1px rgba(0,0,0,0.3), 1px 1px rgba(255,255,255,0.3);
+    /* border: 0.3vw solid rgba(0, 0, 0, 0.3); */
 }
 
 .deck .end-taki-btn:active::after {
