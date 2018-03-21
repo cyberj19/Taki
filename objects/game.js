@@ -6,7 +6,7 @@ function Game() {
     this.gameElement = document.getElementById('board');
     this.dialog = new Dialog();
     this.stats = new Stats();
-    this.statsInterval = window.setInterval(this.stats.renderClock, 1000);
+    this.statsInterval = window.setInterval(this.stats.renderClock, 250);
     this._turn = 1;
 
     var _this = this;
@@ -77,7 +77,7 @@ function Game() {
         _this.player = new Player(this.heap, this.stack);
         _this._turn = 1;
         _this.stats.clearStats();
-        this.statsInterval = window.setInterval(this.stats.renderClock, 1000);
+        this.statsInterval = window.setInterval(this.stats.renderClock, 250);
 
         _this.initGame();
 
@@ -89,8 +89,6 @@ function Game() {
             _this.computer.putCard(_this.stack.getCard('computer'));
             _this.player.putCard(_this.stack.getCard('player'));
         }
-
-        window.setInterval(_this.stats.renderClock, 1000);
 
         _this.start();
     };
