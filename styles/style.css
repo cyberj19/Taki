@@ -453,3 +453,25 @@ body {
     border-color: #fff;
 }
 
+/************************************/
+/*******        Stats view    *******/
+/************************************/
+
+.player-stats {
+    display: inline-block;
+    padding: 0;
+    margin-top: 20px;
+}
+.player-stats li {
+    margin: 5px;
+    padding: 5px 10px;
+
+    background: #ffffffab;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+.player-stats:not(.stats) li {
+    font-weight: bold;
+}
+.player-stats.stats li:first-child {
+    visibility: hidden;
+}

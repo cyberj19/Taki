@@ -21,13 +21,60 @@ function Game() {
         window.clearInterval(this.statsInterval);
 
         _this.dialog.open(winner.playerType.toLocaleUpperCase() +  ' has win the game',
-            '<div><strong>This is the game stats:</strong>' + statsObj + '<br/>Click "OK" to restart</div>' +
+             this.statsView(statsObj) + '<br/><br/>Click "OK" to restart' +
             (winner.playerType === _this.player.playerType ? '<div class="pyro"/>' : '')
             , function () {
                 _this.dialog.close();
                 _this.restartGame();
             }, true);
     };
+
+    this.statsView = function (statsObj) {
+        var averageTime = 0,
+            playerObj = statsObj.player || {},
+            compObj = statsObj.computer || {},
+            gameTimeInSec = statsObj.gameTime / 1000,
+            statsTableObj = [{
+                playerType: 'stats',
+                oneCardTotal: 'Total times that had 1 card',
+                playerAverageTime: 'Average time per turn',
+                playerTotalMoves: 'Total moves'
+            }],
+            statsContent = '';
+
+        playerObj.playerType = 'player';
+        compObj.playerType = 'computer';
+
+        statsTableObj.push(playerObj);
+        statsTableObj.push(compObj);
+
+        statsTableObj.forEach(function(stats) {
+            statsContent += _this.playerStats(stats);
+        });
+
+        _this.stats.gamesAvarageTime.forEach(function (time) {
+            averageTime += time;
+        });
+        if (!!_this.stats.gamesAvarageTime.length) averageTime /= _this.stats.gamesAvarageTime.length;
+
+        return '<div><strong>This game plaid ' + parseInt(gameTimeInSec / 60) + ' minutes and ' + parseInt(gameTimeInSec % 60) + ' seconds during ' + statsObj.totalMoves + ' turns.</strong><br/>'
+            + statsContent
+            + (averageTime && '<br/><br/>Your\'s average time per loop in all your games is: ' + toTimeString(averageTime / 1000))
+
+    };
+
+    this.playerStats = function (statsObject) {
+        return '<ul class="player-stats ' + statsObject.playerType + '">' +
+            '<li>' + (statsObject.playerType || '0' )+ '</li>' +
+            '<li>' + (statsObject.oneCardTotal || '0' ) + '</li>' +
+            '<li>' +  (typeof statsObject.playerAverageTime === 'string' ?
+            statsObject.playerAverageTime :
+                toTimeString( (statsObject.playerAverageTime || 0) / 1000))
+            + '</li>' +
+            '<li>' + (statsObject.playerTotalMoves || '0') + '</li>' +
+            '</ul>';
+    };
+
     this.nextTurn = function (lastCard) {
         _this.stats.endLap(this.currPlayer());
 

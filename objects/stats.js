@@ -9,11 +9,8 @@ function Stats() {
     var _this = this;
 
     this.renderClock = function () {
-        var passTime = (performance.now() - _this.startTime) / 1000,
-            timeSecs = parseInt(passTime % 60),
-            timeMins = parseInt(passTime / 60);
-
-        _this.cloackElm.innerHTML = getPartTime(timeMins) + ':' + getPartTime(timeSecs) + '<hr/>' + (_this.gameStats.length + 1);
+        var passTime = (performance.now() - _this.startTime) / 1000;
+        _this.cloackElm.innerHTML = toTimeString(passTime) + '<hr/>' + (_this.gameStats.length + 1);
 
         return _this.cardElm;
     };
@@ -27,13 +24,14 @@ function Stats() {
                 oneCardTotal: (sumObj[stat.playerType].oneCardTotal || 0) + (stat.cards === 1 ? 1 : 0),
                 playerTotalTime: (sumObj[stat.playerType].playerTotalTime || 0) + stat.time,
                 playerTotalMoves: (sumObj[stat.playerType].playerTotalMoves || 0) + 1,
-                playerAvaregeTime: sumObj[stat.playerType].playerTotalTime / sumObj[stat.playerType].playerTotalMoves
+                playerAverageTime: sumObj[stat.playerType].playerTotalTime / sumObj[stat.playerType].playerTotalMoves
             }
         });
         sumObj.totalMoves = _this.gameStats.length;
         sumObj.gameTime = performance.now() - _this.startTime;
-        _this.gamesAvarageTime.push(sumObj.player ? sumObj.player.playerAvaregeTime : sumObj.gameTime);
+        _this.gamesAvarageTime.push(sumObj.player ? sumObj.player.playerAverageTime : sumObj.gameTime);
 
+        console.log(sumObj);
         return sumObj;
     };
 }
@@ -53,7 +51,6 @@ Stats.prototype.endLap = function (player) {
         };
     this.lastLap = currTime;
 
-    console.log(lapStat);
 
     this.gameStats.push(lapStat);
 
