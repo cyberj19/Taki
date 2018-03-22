@@ -262,13 +262,7 @@ body {
 .deck.player > .card.in {
     top: 75%;
 }
-.deck.player > .card:hover {
-    top: 50%;
-    -webkit-transition-delay: 0s;
-    -moz-transition-delay: 0s;
-    -ms-transition-delay: 0s;
-    -o-transition-delay: 0s;
-    transition-delay: 0s;
+.deck.player > .card {
 }
 .deck .card {
     -webkit-transform: rotate(35deg);
@@ -288,6 +282,10 @@ body {
     -o-transition-delay: 0s;
     transition-delay: 0s;
 }
+.deck.player > .card.active:hover {
+    top: 50%;
+}
+
 .deck.player > .card.off {
     opacity: 0.7;
     cursor: default;

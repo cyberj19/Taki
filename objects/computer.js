@@ -36,6 +36,11 @@ Computer.prototype.turn = function (heap, endFunction) {
 };
 
 Computer.prototype.endTurn = function (endCard) {
-    this._turn = 0;
-    this.endFunction(endCard);
+    var _this = this;
+    window.setTimeout(function () {
+
+        _this._turn = 0;
+        _this.endFunction(endCard);
+
+    }, 1000);
 };

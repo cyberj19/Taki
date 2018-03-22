@@ -98,7 +98,7 @@ function Player(heap, stack) {
     };
     this.renderPlayer = function () {
         _this.renderDeck();
-        if (_this.heap.takiMode) _this.deckElem.appendChild(_this.takiBtn);
+        if (_this.heap.takiMode && _this._turn) _this.deckElem.appendChild(_this.takiBtn);
         return _this.deckElem;
     };
 }
