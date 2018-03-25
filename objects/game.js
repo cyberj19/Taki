@@ -57,9 +57,9 @@ function Game() {
         });
         if (!!_this.stats.gamesAvarageTime.length) averageTime /= _this.stats.gamesAvarageTime.length;
 
-        return '<div><strong>This game plaid ' + parseInt(gameTimeInSec / 60) + ' minutes and ' + parseInt(gameTimeInSec % 60) + ' seconds during ' + statsObj.totalMoves + ' turns.</strong><br/>'
+        return '<div><strong>This game played ' + parseInt(gameTimeInSec / 60) + ' minutes and ' + parseInt(gameTimeInSec % 60) + ' seconds during ' + statsObj.totalMoves + ' turns.</strong><br/>'
             + statsContent
-            + (averageTime && '<br/><br/>Your\'s average time per loop in all your games is: ' + toTimeString(averageTime / 1000))
+            + (averageTime && '<br/><br/>Your\'s average time per loop in all your games is: ' + toTimeString(averageTime / 1000).toString())
 
     };
 
@@ -115,8 +115,6 @@ function Game() {
         _this.gameElement.appendChild(_this.heap.renderHeap());
     };
 
-
-
     this.restartGame = function () {
         _this.heap = new Heap();
         _this.stack = new Stack(this.heap);
@@ -140,4 +138,3 @@ function Game() {
         _this.start();
     };
 }
-

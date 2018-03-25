@@ -40,6 +40,4 @@ function Heap() {
         _this.heap = [];
         return newHeap;
     };
-
-
 }

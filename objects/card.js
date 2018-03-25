@@ -4,7 +4,6 @@ function Card(type, color) {
 
     this.cardElm = document.createElement('div');
     this.cardElm.className = 'card';
-
 }
 
 Card.prototype.renderCard = function (require) {
@@ -15,7 +14,6 @@ Card.prototype.renderCard = function (require) {
     else {
         delete this.cardElm.dataset.color;
         delete this.cardElm.dataset.type;
-
     }
 
     return this.cardElm;

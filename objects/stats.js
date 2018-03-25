@@ -50,8 +50,5 @@ Stats.prototype.endLap = function (player) {
             time: currTime - this.lastLap
         };
     this.lastLap = currTime;
-
-
     this.gameStats.push(lapStat);
-
 };

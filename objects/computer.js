@@ -2,7 +2,7 @@ function Computer(heap, stack) {
     Deck.call(this, heap, stack);
 
     this.playerType = 'computer';
-    this.deckElem.className = this.deckElem.className + ' opp';
+    this.deckElem.classList.add('opp');
 }
 
 Computer.prototype = Object.create(Deck.prototype);
@@ -38,7 +38,6 @@ Computer.prototype.turn = function (heap, endFunction) {
 Computer.prototype.endTurn = function (endCard) {
     var _this = this;
     window.setTimeout(function () {
-
         _this._turn = 0;
         _this.endFunction(endCard);
 

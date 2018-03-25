@@ -7,7 +7,6 @@ function toTimeString(seconds) {
         timeMins = parseInt(seconds / 60);
 
     return getPartTime(timeMins) + ':' + getPartTime(timeSecs);
-
 }
 
 var PLAYER_COUNT = 2;

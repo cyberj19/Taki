@@ -34,13 +34,10 @@ function Deck(heap, stack) {
         }
     };
 
-
     this.putCard = function (card)  {
         if (!!card.type) {
             __this.cards.push(card);
             __this.deckElem.innerHTML = '';
         }
     };
-
 }
-

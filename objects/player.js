@@ -94,7 +94,6 @@ function Player(heap, stack) {
             }
             ++index;
         });
-
     };
     this.renderPlayer = function () {
         _this.renderDeck();
@@ -102,7 +101,6 @@ function Player(heap, stack) {
         return _this.deckElem;
     };
 }
-
 
 Player.prototype = Object.create(Deck.prototype);
 
