@@ -45,6 +45,11 @@ function Player(heap, stack) {
         }
 
     };
+    this.cantPullCard = function () {
+        _this.dialog.open('Can\'t pull a card right now',
+            'You still have cards that you can use before pulling a new card', _this.dialog.close, true);
+
+    };
     this.endTurn = function (endCard) {
         _this.cards.forEach(function (card) {
             card.cardElm.classList.remove('active');
@@ -63,6 +68,7 @@ function Player(heap, stack) {
         }
         else {
             _this.stack.stackElm.removeEventListener('click', _this.pullCard);
+            _this.stack.stackElm.removeEventListener('click', _this.cantPullCard);
             _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('active');
         }
         _this._turn = 0;
@@ -70,30 +76,33 @@ function Player(heap, stack) {
 
     };
     this.turn = function (heap, endFunction) {
-        var index = 0;
+        var index = 0,
+            anyCardEligible = false;
         _this._turn = 1;
         _this.endFunction = endFunction;
         _this.heap = heap;
 
-        if (heap.takiMode) {
-            _this.takiBtn.addEventListener('click', _this.endTurn);
-        }
-        else {
-            _this.stack.stackElm.addEventListener('click', _this.pullCard);
-            _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
-        }
 
         _this.cards.forEach(function (card) {
             if (heap.isCardEligible(card)) {
                 card.cardElm.classList.add('active');
                 card.cardElm.dataset.key = index.toString();
                 card.cardElm.addEventListener('click', _this.chooseCard);
+                anyCardEligible = true;
             }
             else  {
                 card.cardElm.classList.add('off');
             }
             ++index;
         });
+
+        if (heap.takiMode) {
+            _this.takiBtn.addEventListener('click', _this.endTurn);
+        }
+        else {
+            _this.stack.stackElm.addEventListener('click', !anyCardEligible ? _this.pullCard : _this.cantPullCard);
+            _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
+        }
     };
     this.renderPlayer = function () {
         _this.renderDeck();
