@@ -12,9 +12,8 @@ Computer.prototype.turn = function (heap, endFunction) {
     var availableCards = [],
         index = 0;
 
-
+    !heap.takiMode && Sound.tik();
     this._turn = 1;
-
     this.endFunction = endFunction;
     this.cards.forEach(function (card) {
         if (heap.isCardEligible(card) && card.type !== 'COLOR')  // temporary role not to choose color card

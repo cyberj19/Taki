@@ -83,6 +83,7 @@ function Game() {
         }
         else {
             if (lastCard && !lastCard.target) {  // Colored Action cards
+
                 if (lastCard.type === 'TAKI') {
                     this.heap.takiMode = true;
                 }
@@ -98,7 +99,10 @@ function Game() {
             }
             this._turn = this.heap.takiMode ? this._turn : ((this._turn + 1) % PLAYER_COUNT);
             this.renderGame();
-            this.start();
+            window.setTimeout(function () {
+                _this.start();
+            }, 350);
+
         }
     };
 
@@ -125,7 +129,6 @@ function Game() {
         this.statsInterval = window.setInterval(this.stats.renderClock, 250);
 
         _this.initGame();
-
     };
     this.initGame = function () {
         _this.heap.putCard(_this.stack.getCard('heap'));

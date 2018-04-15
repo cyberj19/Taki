@@ -100,6 +100,7 @@ function Player(heap, stack) {
             _this.takiBtn.addEventListener('click', _this.endTurn);
         }
         else {
+            Sound.tikBeep();
             _this.stack.stackElm.addEventListener('click', !anyCardEligible ? _this.pullCard : _this.cantPullCard);
             _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
         }
