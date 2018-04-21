@@ -14,7 +14,7 @@ Computer.prototype.turn = function (heap, endFunction) {
     !heap.takiMode && Sound.tik();
     this._turn = 1;
     this.endFunction = endFunction;
-
+    // TODO: change to var instead of let
     let maxScore = -1;
     let priorityIndex = -1;
     for(let index = 0; index < this.cards.length; ++index){
