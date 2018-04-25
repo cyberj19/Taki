@@ -14,17 +14,16 @@ Computer.prototype.turn = function (heap, endFunction) {
     !heap.takiMode && Sound.tik();
     this._turn = 1;
     this.endFunction = endFunction;
-    // TODO: change to var instead of let
-    let maxScore = -1;
-    let priorityIndex = -1;
-    for(let index = 0; index < this.cards.length; ++index){
-        let currCard = this.cards[index];
+    var maxScore = -1;
+    var priorityIndex = -1;
+    for(var index = 0; index < this.cards.length; ++index){
+        var currCard = this.cards[index];
         if (!heap.isCardEligible(currCard)) {
             console.log('Card #' + index + ': ', currCard.type, currCard.color, 'ILLEGAL');
             continue;
         }
 
-        let currScore = cardScore(currCard, heap);
+        var currScore = cardScore(currCard, heap);
 
         console.log('Card #' + index + ': ', currCard.type, currCard.color, 'Score', currScore);
         if (currScore > maxScore) {
@@ -41,10 +40,10 @@ Computer.prototype.turn = function (heap, endFunction) {
         else this.pullCard();
         return;
     }
-    let priorityCard = this.cards[priorityIndex];
+    var priorityCard = this.cards[priorityIndex];
 
     if (priorityCard.type === 'COLOR') {
-        let colors = cardsColors();
+        var colors = cardsColors();
         priorityCard.color = colors[Math.floor(Math.random() * colors.length)];
     }
 
