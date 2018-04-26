@@ -78,12 +78,11 @@ function Game() {
     this.nextTurn = function (lastCard) {
         _this.stats.endLap(this.currPlayer());
 
-        if (!this.currPlayer().cards.length) { // we have a winner
+        if (!this.currPlayer().cards.length && lastCard.type !== '+') { // we have a winner
             this.gameOver()
         }
         else {
             if (lastCard && !lastCard.target) {  // Colored Action cards
-
                 if (lastCard.type === 'TAKI') {
                     this.heap.takiMode = true;
                 }
@@ -95,13 +94,19 @@ function Game() {
                 }
             }
             else { // TAKI finished or user took a card
-                this.heap.takiMode = false;
+                if (this.heap.takiMode) {
+                    this.heap.takiMode = false;
+                    if (this.heap.card.type !== 'TAKI') {
+                        _this.nextTurn(this.heap.card);
+                        return;
+                    }
+                }
             }
             this._turn = this.heap.takiMode ? this._turn : ((this._turn + 1) % PLAYER_COUNT);
             this.renderGame();
             window.setTimeout(function () {
                 _this.start();
-            }, 350);
+            }, this.heap.takiMode ? 0 : 550);
 
         }
     };
