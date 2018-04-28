@@ -6,16 +6,15 @@ function Stack(heap) {
 
     this.stackElm = document.createElement('div');
     this.stackElm.className = 'pack stack';
-    this.stackElm.appendChild(this.sampleCard.renderCard('stack'));
 }
 
 Stack.prototype.setStack = function () {
-    if (!!this.stack.length) return;
+    if (!!this.stack.length) return; // if stack isn't empty no need to set it again
 
-    if (!!this._heap.heap.length) {
+    if (!!this._heap.heap.length) { // if there is a heap already it will take the heap (and leave there only the top card)
         this.stack = this._heap.getHeap();
     }
-    else {
+    else { // there is a need to create a new stack from the constants
         var tmpStack = [];
         for (var i = 0; i < 2; ++i) {
             regularCards().forEach(function (type) {
@@ -51,5 +50,7 @@ Stack.prototype.getCard = function (rquire) {
 };
 
 Stack.prototype.renderStack = function () {
+    this.stackElm.innerHTML = '';
+    this.stackElm.appendChild(this.sampleCard.renderCard('stack'));
     return this.stackElm;
 };

@@ -112,6 +112,7 @@ function Game() {
     };
 
     this.start = function () {
+        _this.renderGame();
         _this.currPlayer().turn(_this.heap, _this.nextTurn.bind(_this));
         _this.renderGame();
     };

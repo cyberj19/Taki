@@ -6,10 +6,10 @@ function Player(heap, stack) {
     this.dialog = new Dialog();
     this._turn = 0;
     this.endFunction = function () {};
-    this.deckElem.classList.add('player');
+    addClass(this.deckElem, 'player');
 
     this.takiBtn = document.createElement('div');
-    this.takiBtn.classList.add('end-taki-btn');
+    addClass(this.takiBtn, 'end-taki-btn');
 
 
     this.showColorDialog = function (cardIndex) {
@@ -37,7 +37,7 @@ function Player(heap, stack) {
     this.chooseCard = function (event) {
         if (_this._turn) {
             var cardIndex = parseInt(event.target.dataset.key);
-            event.target.classList.add('chosen');
+            addClass(event.target, 'chosen');
 
                 if (_this.cards[cardIndex].type === CARDS.COLOR ) {
                     _this.showColorDialog(cardIndex);
@@ -48,23 +48,23 @@ function Player(heap, stack) {
         }
 
     };
+
     this.cantPullCard = function () {
         _this.dialog.open('Can\'t pull a card right now',
             'You still have cards that you can use before pulling a new card', _this.dialog.close, true);
-
     };
+
     this.endTurn = function (endCard) {
         _this.cards.forEach(function (card) {
-            card.cardElm.classList.remove('active');
-            card.cardElm.classList.remove('off');
+            removeClass(card.cardElm, 'active');
+            removeClass(card.cardElm, 'off');
             card.cardElm.removeEventListener('click', _this.chooseCard);
 
             window.setTimeout(function () {
-                card.cardElm.classList.remove('in');
+                removeClass(card.cardElm, 'in');
             }, 100);
             delete card.cardElm.dataset.key;
         });
-
 
         if (heap.takiMode) {
             _this.takiBtn.removeEventListener('click', _this.endTurn);
@@ -72,13 +72,13 @@ function Player(heap, stack) {
         else {
             _this.stack.stackElm.removeEventListener('click', _this.pullCard);
             _this.stack.stackElm.removeEventListener('click', _this.cantPullCard);
-            _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('active');
-            _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('required');
+            removeClass(_this.stack.stackElm.getElementsByClassName('card')[0], 'active');
+            removeClass(_this.stack.stackElm.getElementsByClassName('card')[0], 'required');
         }
         _this._turn = 0;
        window.setTimeout(function() { _this.endFunction(endCard) }, 600);
-
     };
+
     this.turn = function (heap, endFunction) {
         var index = 0,
             anyCardEligible = false;
@@ -86,16 +86,15 @@ function Player(heap, stack) {
         _this.endFunction = endFunction;
         _this.heap = heap;
 
-
         _this.cards.forEach(function (card) {
             if (heap.isCardEligible(card)) {
-                card.cardElm.classList.add('active');
+                addClass(card.cardElm, 'active');
                 card.cardElm.dataset.key = index.toString();
                 card.cardElm.addEventListener('click', _this.chooseCard);
                 anyCardEligible = true;
             }
             else  {
-                card.cardElm.classList.add('off');
+                addClass(card.cardElm, 'off');
             }
             ++index;
         });
@@ -110,8 +109,8 @@ function Player(heap, stack) {
         else {
             Sound.tikBeep();
             _this.stack.stackElm.addEventListener('click', !anyCardEligible ? _this.pullCard : _this.cantPullCard);
-            _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
-            !anyCardEligible && _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('required');
+            addClass( _this.stack.stackElm.getElementsByClassName('card')[0], 'active');
+            !anyCardEligible && addClass(_this.stack.stackElm.getElementsByClassName('card')[0], 'required');
         }
     };
     this.renderPlayer = function () {

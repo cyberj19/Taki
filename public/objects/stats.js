@@ -31,7 +31,6 @@ function Stats() {
         sumObj.gameTime = performance.now() - _this.startTime;
         _this.gamesAvarageTime.push(sumObj.player ? sumObj.player.playerAverageTime : sumObj.gameTime);
 
-        console.log(sumObj);
         return sumObj;
     };
 }

@@ -4,7 +4,7 @@ function Dialog() {
     this.dialogContainer = document.getElementById('dialog');
 
     this.close = function() {
-        _this.dialogContainer.classList.remove('open');
+        removeClass(_this.dialogContainer, 'open');
 
         _this.dialogContainer.getElementsByClassName('approve')[0].removeEventListener('click', _this.approveFn);
         _this.dialogContainer.getElementsByClassName('cancel')[0].removeEventListener('click',  _this.close);
@@ -20,8 +20,8 @@ function Dialog() {
 
         approveBtn.addEventListener('click', _this.approveFn);
         !noCancel && cancelBtn.addEventListener('click', _this.close);
-        noCancel ? cancelBtn.classList.add('hidden') : cancelBtn.classList.remove('hidden');
+        noCancel ? addClass(cancelBtn, 'hidden') : removeClass(cancelBtn, 'hidden');
 
-        _this.dialogContainer.classList.add('open');
+        addClass(_this.dialogContainer, 'open');
     };
 }

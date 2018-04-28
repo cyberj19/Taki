@@ -1,10 +1,8 @@
-
-
 function Computer(heap, stack) {
     Deck.call(this, heap, stack);
 
     this.playerType = 'computer';
-    this.deckElem.classList.add('opp');
+    addClass(this.deckElem, 'opp');
 }
 
 Computer.prototype = Object.create(Deck.prototype);
