@@ -9,7 +9,7 @@ function Heap() {
     var _this = this;
 
     this.isCardEligible = function (card) {
-        return _this.takiMode ? card.color === _this.card.color : !(!!_this.card.type
+        return _this.takiMode ? (card.color === _this.card.color || card.type === 'COLOR') : !(!!_this.card.type
             && unColoredCards().indexOf( card.type ) === -1
             && card.type !== _this.card.type
             && card.color !== _this.card.color);

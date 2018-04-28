@@ -65,6 +65,6 @@ var cardScore = function(card, heap) { // this function runs for eligible cards 
     if (card.type === "STOP") return 5;
     if (card.type === "+") return 4;
     if (card.type === "TAKI") return 3;
-    if (card.color === heap.color) return 2;
+    if (card.color === heap.card.color) return 2;
     return 1;
 };

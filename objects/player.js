@@ -97,6 +97,10 @@ function Player(heap, stack) {
         });
 
         if (heap.takiMode) {
+            if (heap.card.type === 'COLOR') {
+                _this.endTurn();
+                return;
+            }
             _this.takiBtn.addEventListener('click', _this.endTurn);
         }
         else {

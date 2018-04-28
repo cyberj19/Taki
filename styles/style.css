@@ -108,8 +108,8 @@ body {
 /*********************************/
 .card, .pack {
     display: inline-block;
-    width: 14vw;
-    height: 18vw;
+    width: 14.5vw;
+    height: 19vw;
     border-radius: .5vw;
     border: .5vmax solid #fff;
 }
@@ -147,12 +147,18 @@ body {
     content: "TAKI";
     display: block;
     color: black;
+    z-index: 0;
     height: 100%;
     width: 100%;
-    font-size: 1.45vw;
+    font-size: 2vw;
     text-align: left;
     font-weight: bold;
-    text-shadow: red 0 1em, black 0 2em, red 0 3em, black 0 4em, red 0 5em, black 0 6em, red 0 7em, black 0 8em, red 0 9em, black 0 10em, red 0 11em, black 0 12em, red 0 13em, black 0 14em, red 0 15em, black 0 16em, red 2.5em 0em, black 2.5em 1em, red 2.5em 2em, black 2.5em 3em, red 2.5em 4em, black 2.5em 5em, red 2.5em 6em, black 2.5em 7em, red 2.5em 8em, black 2.5em 9em, red 2.5em 10em, black 2.5em 11em, red 2.5em 12em, black 2.5em 13em, red 2.5em 14em, black 2.5em 15em, red 2.5em 16em, black 5em 0em, red 5em 1em, black 5em 2em, red 5em 3em, black 5em 4em, red 5em 5em, black 5em 6em, red 5em 7em, black 5em 8em, red 5em 9em, black 5em 10em, red 5em 11em, black 5em 12em, red 5em 13em, black 5em 14em, red 5em 15em, black 5em 16em, red 7.5em 0em, black 7.5em 1em, red 7.5em 2em, black 7.5em 3em, red 7.5em 4em, black 7.5em 5em, red 7.5em 6em, black 7.5em 7em, red 7.5em 8em, black 7.5em 9em, red 7.5em 10em, black 7.5em 11em, red 7.5em 12em, black 7.5em 13em, red 7.5em 14em, black 7.5em 15em, red 7.5em 16em;
+    text-shadow: red 0 1em, black 0 2em, red 0 3em, black 0 4em, red 0 5em, black 0 6em, red 0 7em, black 0 8em, red 0 9em, black 0 10em, red 0 11em, black 0 12em, red 0 13em, black 0 14em, red 0 15em, black 0 16em, red 2.5em 0em, black 2.5em 1em, red 2.5em 2em, black 2.5em 3em, red 2.5em 4em, black 2.5em 5em, red 2.5em 6em, black 2.5em 7em, red 2.5em 8em, black 2.5em 9em, red 2.5em 10em, black 2.5em 11em, red 2.5em 12em, black 2.5em 13em, red 2.5em 14em, black 2.5em 15em, red 2.5em 16em, black 5em 0em, red 5em 1em, black 5em 2em, red 5em 3em, black 5em 4em, red 5em 5em, black 5em 6em, red 5em 7em, black 5em 8em, red 5em 9em, black 5em 10em, red 5em 11em, black 5em 12em, red 5em 13em, black 5em 14em, red 5em 15em, black 5em 16em, red 7.5em 0em, black 7.5em 1em, red 7.5em 2em, black 7.5em 3em, red 7.5em 4em, black 7.5em 5em, red 7.5em 6em, black 7.5em 7em, red 7.5em 8em, black 7.5em 9em, red 7.5em 10em, black 7.5em 11em, red 7.5em 12em, black 7.5em 13em, red 7.5em 14em, black 7.5em 15em, red 7.5em 16em, black 10em 0em, red 10em 1em, black 10em 2em, red 10em 3em, black 10em 4em, red 10em 5em, black 10em 6em, red 10em 7em, black 10em 8em, red 10em 9em, black 10em 10em, red 10em 11em, black 10em 12em, red 10em 13em, black 10em 14em, red 10em 15em, black 10em 16em;
+    -webkit-transform: rotate(-54deg) translate(-29%, -22%);
+    -moz-transform: rotate(-54deg) translate(-29%, -22%);
+    -ms-transform: rotate(-54deg) translate(-29%, -22%);
+    -o-transform: rotate(-54deg) translate(-29%, -22%);
+    transform: rotate(-54deg) translate(-29%, -22%);
 }
 
 .card[data-type]::before,
@@ -162,8 +168,15 @@ body {
 
 }
 .card[data-type]::after {
-    text-shadow: 11.5vw 16vw, -2px 0 #000, 0 -2px #000, 0 2px  #000, 2px 0 #000, 2px -2px #000, -2px -2px #000, -2px 2px #000, 2px 2px #000;
-    margin: 2px 10px;
+    text-shadow: 11.5vw 16vw,
+    11.6vw 16vw #000, 11.4vw 16vw #000, 11.6vw 16.1vw  #000, 11.4vw 16.1vw #000, 11.5vw 15.9vw #000, 11.4vw 15.9vw #000, 11.6vw 15.9vw #000, 11.6vw 16vw #000,
+        -2px 0 #000, 0 -2px #000, 0 2px  #000, 2px 0 #000, 2px -2px #000, -2px -2px #000, -2px 2px #000, 2px 2px #000;
+    margin: 2px 4px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
 }
 .card[data-type]::before {
     text-align: center;
@@ -230,6 +243,7 @@ body {
     width: 30px;
     height: 30px;
     line-height: 31px;
+    z-index: 1;
     border-radius: 50%;
     font-weight: bold;
     border: 2px solid #FFF;
