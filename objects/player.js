@@ -44,9 +44,7 @@ function Player(heap, stack) {
                     return;
                 }
 
-            window.setTimeout(function () {
-                _this.putCardInHeap(cardIndex);
-            }, 600)
+            _this.putCardInHeap(cardIndex);
         }
 
     };
@@ -78,7 +76,7 @@ function Player(heap, stack) {
             _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('required');
         }
         _this._turn = 0;
-        _this.endFunction(endCard);
+       window.setTimeout(function() { _this.endFunction(endCard) }, 600);
 
     };
     this.turn = function (heap, endFunction) {
