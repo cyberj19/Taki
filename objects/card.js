@@ -7,7 +7,7 @@ function Card(type, color) {
 }
 
 Card.prototype.renderCard = function (require) {
-    if (['player', 'heap'].indexOf(require) > -1) {
+    if ([PLAYER_TYPE, HEAP_TYPE].indexOf(require) > -1) {
         this.cardElm.dataset.color = this.color;
         this.cardElm.dataset.type  = this.type ;
     }

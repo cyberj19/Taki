@@ -9,7 +9,7 @@ function Heap() {
     var _this = this;
 
     this.isCardEligible = function (card) {
-        return _this.takiMode ? (card.color === _this.card.color || card.type === 'COLOR') : !(!!_this.card.type
+        return _this.takiMode ? (card.color === _this.card.color || card.type === CARDS.COLOR) : !(!!_this.card.type
             && unColoredCards().indexOf( card.type ) === -1
             && card.type !== _this.card.type
             && card.color !== _this.card.color);
@@ -29,7 +29,7 @@ function Heap() {
     this.renderHeap = function () {
         if (!!_this.card.type) {
             _this.heapElm.innerHTML = '';
-            _this.heapElm.appendChild(_this.card.renderCard('heap'));
+            _this.heapElm.appendChild(_this.card.renderCard(HEAP_TYPE));
         }
 
         return _this.heapElm;

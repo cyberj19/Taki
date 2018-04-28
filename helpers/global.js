@@ -10,3 +10,7 @@ function toTimeString(seconds) {
 }
 
 var PLAYER_COUNT = 2;
+
+var PLAYER_TYPE = 'player';
+var COMPUTER_TYPE = 'computer';
+var HEAP_TYPE = 'heap';

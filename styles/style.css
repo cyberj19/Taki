@@ -80,6 +80,19 @@ body {
     padding: 20px 0;
     box-sizing: border-box;
 }
+
+li.clock::before,
+li.clock::after {
+    content: "Turns ";
+    display: block;
+    font-weight: 300;
+    font-size: .5em;
+    margin-top: -3px;
+}
+li.clock::before {
+    content: "Game time";
+    margin-top: -16px;
+}
 .menu li.clock hr {
     border: 0;
     border-top: 1px solid;
@@ -287,8 +300,43 @@ body {
 }
 .stack > .card.active,
 .deck.player > .card.active {
-    cursor: pointer;
+cursor: pointer;
 }
+.stack > .card.active.required {
+    -webkit-animation: redShadow linear 2s infinite;
+    -o-animation: redShadow linear 2s  infinite;
+    animation: redShadow linear 2s infinite;
+}
+
+@keyframes redShadow {
+    0% {
+        box-shadow: 0 0 0 3px transparent,0 0 9px 3px rgba(0,0,0,0.6);
+    }
+    50% {
+        box-shadow: 0 0 0 3px red,  0 0 9px 3px rgba(0,0,0,0.6);
+    }
+}
+
+@-webkit-keyframes redShadow {
+    0% {
+        box-shadow: 0 0 0 3px transparent,0 0 9px 3px rgba(0,0,0,0.6);
+    }
+    50% {
+        box-shadow: 0 0 0 3px red,  0 0 9px 3px rgba(0,0,0,0.6);
+    }
+}
+
+@-o-keyframes redShadow {
+    0% {
+        box-shadow: 0 0 0 3px transparent,0 0 9px 3px rgba(0,0,0,0.6);
+    }
+    50% {
+        box-shadow: 0 0 0 3px red,  0 0 9px 3px rgba(0,0,0,0.6);
+    }
+}
+
+
+
 .deck.player > .card.active {
     -webkit-transition-delay: 0s;
     -moz-transition-delay: 0s;
@@ -298,6 +346,20 @@ body {
 }
 .deck.player > .card.active:hover {
     top: 50%;
+}
+.deck.player > .card.active.chosen {
+    top: -70%;
+    opacity: 0;
+    -webkit-transform: rotate(540deg);
+    -moz-transform: rotate(540deg);
+    -ms-transform: rotate(540deg);
+    -o-transform: rotate(540deg);
+    transform: rotate(540deg);
+    -webkit-transition: all .6s;
+    -moz-transition: all .6s;
+    -ms-transition: all .6s;
+    -o-transition: all .6s;
+    transition: all .6s;
 }
 
 .deck.player > .card.off {

@@ -42,8 +42,8 @@ function Game() {
             }],
             statsContent = '';
 
-        playerObj.playerType = 'player';
-        compObj.playerType = 'computer';
+        playerObj.playerType = PLAYER_TYPE;
+        compObj.playerType = COMPUTER_TYPE;
 
         statsTableObj.push(playerObj);
         statsTableObj.push(compObj);
@@ -131,16 +131,16 @@ function Game() {
         _this.player = new Player(this.heap, this.stack);
         _this._turn = 1;
         _this.stats.clearStats();
-        this.statsInterval = window.setInterval(this.stats.renderClock, 250);
+        _this.statsInterval = window.setInterval(this.stats.renderClock, 250);
 
         _this.initGame();
     };
     this.initGame = function () {
-        _this.heap.putCard(_this.stack.getCard('heap'));
+        _this.heap.putCard(_this.stack.getCard(HEAP_TYPE));
 
         for (var i = 0; i < 8; ++i) {
-            _this.computer.putCard(_this.stack.getCard('computer'));
-            _this.player.putCard(_this.stack.getCard('player'));
+            _this.computer.putCard(_this.stack.getCard(COMPUTER_TYPE));
+            _this.player.putCard(_this.stack.getCard(PLAYER_TYPE));
         }
 
         _this.start();

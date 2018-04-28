@@ -39,8 +39,8 @@ Stack.prototype.setStack = function () {
 Stack.prototype.getCard = function (rquire) {
     this.setStack();
     if (!!this.stack.length) {
-        var cardLoc = Math.ceil(Math.random() * (this.stack.length - 1)); // Every day we shuffeling
-        while (rquire === 'heap' && unColoredCards().indexOf(this.stack[cardLoc].type) > -1) {
+        var cardLoc = Math.ceil(Math.random() * (this.stack.length - 1)); // Every pull we shuffeling
+        while (rquire === HEAP_TYPE && unColoredCards().indexOf(this.stack[cardLoc].type) > -1) {
             cardLoc = Math.ceil(Math.random() * (this.stack.length - 1));
         }
         var newCard = new Card(this.stack[cardLoc].type, this.stack[cardLoc].color);

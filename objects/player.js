@@ -2,7 +2,7 @@ function Player(heap, stack) {
     Deck.call(this, heap, stack);
     var _this = this;
 
-    this.playerType = 'player';
+    this.playerType = PLAYER_TYPE;
     this.dialog = new Dialog();
     this._turn = 0;
     this.endFunction = function () {};
@@ -37,11 +37,16 @@ function Player(heap, stack) {
     this.chooseCard = function (event) {
         if (_this._turn) {
             var cardIndex = parseInt(event.target.dataset.key);
-            if (_this.cards[cardIndex].type === 'COLOR' ) {
-                _this.showColorDialog(cardIndex);
-                return;
-            }
-            _this.putCardInHeap(cardIndex);
+            event.target.classList.add('chosen');
+
+                if (_this.cards[cardIndex].type === CARDS.COLOR ) {
+                    _this.showColorDialog(cardIndex);
+                    return;
+                }
+
+            window.setTimeout(function () {
+                _this.putCardInHeap(cardIndex);
+            }, 600)
         }
 
     };
@@ -70,6 +75,7 @@ function Player(heap, stack) {
             _this.stack.stackElm.removeEventListener('click', _this.pullCard);
             _this.stack.stackElm.removeEventListener('click', _this.cantPullCard);
             _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('active');
+            _this.stack.stackElm.getElementsByClassName('card')[0].classList.remove('required');
         }
         _this._turn = 0;
         _this.endFunction(endCard);
@@ -97,7 +103,7 @@ function Player(heap, stack) {
         });
 
         if (heap.takiMode) {
-            if (heap.card.type === 'COLOR') {
+            if (heap.card.type === CARDS.COLOR) {
                 _this.endTurn();
                 return;
             }
@@ -107,6 +113,7 @@ function Player(heap, stack) {
             Sound.tikBeep();
             _this.stack.stackElm.addEventListener('click', !anyCardEligible ? _this.pullCard : _this.cantPullCard);
             _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('active');
+            !anyCardEligible && _this.stack.stackElm.getElementsByClassName('card')[0].classList.add('required');
         }
     };
     this.renderPlayer = function () {

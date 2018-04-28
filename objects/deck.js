@@ -28,7 +28,7 @@ function Deck(heap, stack) {
     this.pullCard = function () {
         if (!!__this._turn && !__this.heap.takiMode) {
             var card = __this.stack.getCard(__this.playerType);
-            __this.playerType === 'player' && card.cardElm.classList.add('in');
+            __this.playerType === PLAYER_TYPE && card.cardElm.classList.add('in');
             __this.cards.push(card);
             __this.endTurn();
         }
