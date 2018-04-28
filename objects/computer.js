@@ -9,29 +9,46 @@ Computer.prototype = Object.create(Deck.prototype);
 Computer.prototype.constructor = Computer;
 
 Computer.prototype.turn = function (heap, endFunction) {
-    var availableCards = [],
-        index = 0;
 
+    console.log('COMPUTER TURN');
     !heap.takiMode && Sound.tik();
     this._turn = 1;
     this.endFunction = endFunction;
-    this.cards.forEach(function (card) {
-        if (heap.isCardEligible(card) && card.type !== 'COLOR')  // temporary role not to choose color card
-        {
-            availableCards.push(index);
+    var maxScore = -1;
+    var priorityIndex = -1;
+    for(var index = 0; index < this.cards.length; ++index){
+        var currCard = this.cards[index];
+        if (!heap.isCardEligible(currCard)) {
+            console.log('Card #' + index + ': ', currCard.type, currCard.color, 'ILLEGAL');
+            continue;
         }
-        ++index;
-    });
 
-    if (!!availableCards.length) {
-        this.putCardInHeap(availableCards[0]);
+        var currScore = cardScore(currCard, heap);
+
+        console.log('Card #' + index + ': ', currCard.type, currCard.color, 'Score', currScore);
+        if (currScore > maxScore) {
+            maxScore = currScore;
+            priorityIndex = index;
+        }
     }
-    else {
+
+
+    if (maxScore === -1) {
         if (heap.takiMode) {
             this.endTurn();
         }
         else this.pullCard();
+        return;
     }
+    var priorityCard = this.cards[priorityIndex];
+
+    if (priorityCard.type === 'COLOR') {
+        var colors = cardsColors();
+        priorityCard.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    console.log('Selected:',priorityCard.type, priorityCard.color);
+    this.putCardInHeap(priorityIndex);
 };
 
 Computer.prototype.endTurn = function (endCard) {
@@ -41,4 +58,13 @@ Computer.prototype.endTurn = function (endCard) {
         _this.endFunction(endCard);
 
     }, 1000);
+};
+
+var cardScore = function(card, heap) { // this function runs for eligible cards only
+    if (card.type === "COLOR") return 6;
+    if (card.type === "STOP") return 5;
+    if (card.type === "+") return 4;
+    if (card.type === "TAKI") return 3;
+    if (card.color === heap.color) return 2;
+    return 1;
 };
