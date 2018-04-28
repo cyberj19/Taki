@@ -12,10 +12,12 @@ Computer.prototype.turn = function (heap, endFunction) {
     !heap.takiMode && Sound.tik();
     this._turn = 1;
     this.endFunction = endFunction;
-    var maxScore = -1;
-    var priorityIndex = -1;
+    var maxScore = -1,
+        colors = [],
+        priorityIndex = -1;
     for(var index = 0; index < this.cards.length; ++index){
         var currCard = this.cards[index];
+        currCard.color!== UCOLORED_COLOR && colors.push(currCard.color);
         if (!heap.isCardEligible(currCard)) continue;
 
         var currScore = this.cardScore(currCard, heap);
@@ -36,7 +38,6 @@ Computer.prototype.turn = function (heap, endFunction) {
     var priorityCard = this.cards[priorityIndex];
 
     if (priorityCard.type === CARDS.COLOR) {
-        var colors = cardsColors();
         priorityCard.color = colors[Math.floor(Math.random() * colors.length)];
     }
 

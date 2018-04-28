@@ -19,3 +19,5 @@ var unColoredCards = function () { return [
 var cardsColors = function () { return [
   "red", "blue", "green", "yellow"
 ]};
+
+var UCOLORED_COLOR = "none";

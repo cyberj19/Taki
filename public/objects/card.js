@@ -1,6 +1,6 @@
 function Card(type, color) {
     this.type = type;
-    this.color = color || 'none';
+    this.color = color || UCOLORED_COLOR;
 
     this.cardElm = document.createElement('div');
     this.cardElm.className = 'card';

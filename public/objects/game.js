@@ -78,25 +78,28 @@ function Game() {
     this.nextTurn = function (lastCard) {
         _this.stats.endLap(this.currPlayer());
 
-        if (!this.currPlayer().cards.length && lastCard.type !== '+') { // we have a winner
+        if (!this.currPlayer().cards.length && lastCard.type !== CARDS.PLUS) { // we have a winner
             this.gameOver()
         }
         else {
             if (lastCard && !lastCard.target) {  // Colored Action cards
-                if (lastCard.type === 'TAKI') {
+                if (lastCard.type === CARDS.TAKI) {
                     this.heap.takiMode = true;
                 }
-                if (lastCard.type === 'STOP' && !this.heap.takiMode) {
+                if (lastCard.type === CARDS.STOP && !this.heap.takiMode) {
                     this._turn = (this._turn + 1) % PLAYER_COUNT;
                 }
-                if (lastCard.type === '+' && !this.heap.takiMode) {
+                if (lastCard.type === CARDS.PLUS && !this.heap.takiMode) {
                     this._turn = (this._turn - 1) % PLAYER_COUNT; // Decrease the turn cuz soon it will be increased
+                }
+                if (this.heap.takiMode && lastCard.type === CARDS.COLOR) {
+                    this.heap.takiMode = false;
                 }
             }
             else { // TAKI finished or user took a card
                 if (this.heap.takiMode) {
                     this.heap.takiMode = false;
-                    if (this.heap.card.type !== 'TAKI') {
+                    if (this.heap.card.type !== CARDS.TAKI) {
                         _this.nextTurn(this.heap.card);
                         return;
                     }
