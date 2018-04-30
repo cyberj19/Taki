@@ -115,7 +115,6 @@ function Game() {
     };
 
     this.start = function () {
-        _this.renderGame();
         _this.currPlayer().turn(_this.heap, _this.nextTurn.bind(_this));
         _this.renderGame();
     };
@@ -146,6 +145,7 @@ function Game() {
             _this.computer.putCard(_this.stack.getCard(COMPUTER_TYPE));
             _this.player.putCard(_this.stack.getCard(PLAYER_TYPE));
         }
+        _this.renderGame();
 
         _this.start();
     };

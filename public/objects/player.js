@@ -21,8 +21,8 @@ function Player(heap, stack) {
             '    <input type="radio" id="dialog-color-choose-YELLOW" name="color" value="yellow">\n' +
             '    <label for="dialog-color-choose-YELLOW">YELLOW</label>\n' +
             '    <input type="radio" id="dialog-color-choose-RED" name="color" value="red">\n' +
-            '    <label for="dialog-color-choose-RED">RED</label></div>', function () {
-
+            '    <label for="dialog-color-choose-RED">RED</label></div>',
+            function () {
                 var selectedColor = _this.dialog.dialogContainer.querySelector('input[name="color"]:checked');
 
                 if (!!selectedColor) {
@@ -30,6 +30,11 @@ function Player(heap, stack) {
                     _this.dialog.close();
                     _this.putCardInHeap(cardIndex);
                 }
+            },
+            false,
+            function () {
+                _this.dialog.close();
+                removeClass(_this.cards[cardIndex].cardElm, 'chosen');
             })
     };
 

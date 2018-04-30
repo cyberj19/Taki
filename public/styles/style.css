@@ -524,7 +524,21 @@ cursor: pointer;
 
 .dialog input[type=radio][name=color]:checked + label {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.59);
+    position: relative;
     border-color: #fff;
+}
+
+.dialog input[type=radio][name=color]:checked + label:after {
+    content: "\2713";
+    display: inline-block;
+    text-align: center;
+    color: white;
+    left: 0;
+    font-size: 40px;
+    text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    top: calc(50% - .7em);
+    position: absolute;
+    width: 100%;
 }
 
 /************************************/
